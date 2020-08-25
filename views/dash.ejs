@@ -1,0 +1,62 @@
+
+<h1>
+    Dashboard
+</h1>
+<a  href="/logout">Logout</a>
+
+<form action="/dash" method="GET" >
+   <div class="item">
+    <div class="ui icon input">
+      <input type="text" name="search" placeholder="Search...">
+      
+      <button style="display: inline;"><i class="search link icon"></i> </button>
+    </div>
+</form>
+ 
+
+  <table class="ui compact celled definition table">
+    <thead class="full-width">
+      <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>E-mail address</th>
+        <th>Edit/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% data.map((data,index)=>{ %>
+      <tr>
+        <td class="collapsing">
+          <div class="ui fitted slider checkbox">
+            <a ><%=index+1%></a>
+          </div>
+        </td>
+        <td><%= data.name%></td>
+        <td><%= data.email%></td>
+        <td>
+            <form style="display: inline;" action="<%='/user/'+data._id%>"  method="GET">
+                <button class="ui button">Edit</button> 
+            </form> 
+            <form style="display: inline;" action="<%='/user/'+data._id%>?_method=DELETE" method="POST">
+                <button class="ui button">Delete</button> 
+            </form>   
+            
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+    <tfoot class="full-width">
+      <tr>
+        <th></th>
+        <th colspan="4">
+            <a href="/user">
+                <div class="ui right floated small primary labeled icon button">
+                    <i  class="user icon"></i> Add User  
+                </div>
+            </a>
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+
+  
